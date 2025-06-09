@@ -24,6 +24,8 @@ let ydir = 2
 let score =0;
 let scoreLog = [];
 
+const gameAudio = document.getElementById('game-audio');
+
 
 //create blocks
 class Block {
@@ -185,7 +187,10 @@ document.getElementById('stop-btn').addEventListener('click', stopgame);
 
 function startgame() {
     if (!timerid) {
+        resetgame()
         timerid = setInterval(moveball, 20);
+        gameAudio.currentTime = 0; 
+        gameAudio.play();   
     }
 }
 
@@ -195,10 +200,41 @@ function stopgame() {
         timerid = null;
         logScore(score);
     }
+    gameAudio.pause();            // pause audio
+    gameAudio.currentTime = 0; 
 }
 
 function logScore(currentScore) {
     scoreLog.push(currentScore);
     const logElement = document.getElementById('score-log');
     logElement.textContent = 'Score Log:\n' + scoreLog.join('\n');
+}
+
+function resetgame() {
+    score = 0;
+    scoredisplay.textContent = "Score: " + score;
+
+    currentposition = [...userstart];
+    ballcurrent = [...ballstart];
+    xdir = 2;
+    ydir = 2;
+
+    grid.innerHTML = "";
+
+    blocks.length = 0;
+    const newblocks = [
+        new Block(10,270), new Block(120,270), new Block(230,270), new Block(340,270), new Block(450,270),
+        new Block(10,240), new Block(120,240), new Block(230,240), new Block(340,240), new Block(450,240),
+        new Block(10,210), new Block(120,210), new Block(230,210), new Block(340,210), new Block(450,210),
+    ];
+    blocks.push(...newblocks);
+    addblocks();
+
+    drawuser();
+    grid.appendChild(user);
+
+    drawball();
+    grid.appendChild(ball);
+
+    document.addEventListener('keydown', moveuser);
 }
