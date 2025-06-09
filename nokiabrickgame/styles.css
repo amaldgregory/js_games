@@ -1,0 +1,48 @@
+.grid {
+    width : 560px;
+    height : 300px;
+    border: solid black 1px;
+    position: absolute;
+}
+
+.block {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background-color: red;
+}
+
+.user {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background-color: blue;
+}
+
+.ball {
+    position: absolute;
+    width : 20px;
+    height: 20px;
+    border-radius: 10px;
+    border: solid slategray 1px;
+    background-color: black;
+}
+
+
+#controls {
+    margin: 10px;
+}
+
+#controls button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#score-log {
+    margin-top: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+    border: 1px solid white;
+    padding: 5px;
+}
